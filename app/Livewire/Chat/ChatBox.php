@@ -37,7 +37,7 @@ class ChatBox extends Component
 
 
         //update the chat height 
-        // $this->dispatchBrowserEvent('update-chat-height');
+        $this->dispatch('update-chat-height');
     }
 
     public function loadMessages()
@@ -88,7 +88,7 @@ class ChatBox extends Component
         $this->reset('message');
 
         //scroll to bottom
-        // $this->dispatchBrowserEvent('scroll-bottom');
+        $this->dispatch('scroll-bottom');
 
 
         //push the message
