@@ -125,7 +125,7 @@ class="w-full overflow-hidden">
 
             <div @class(['flex flex-wrap text-[15px]  rounded-xl p-2.5 flex flex-col text-black bg-[#f6f6f8fb]',
                          'rounded-bl-none border  border-gray-200/40 '=>!($message->sender_id=== auth()->id()),
-                         'rounded-br-none bg-blue-500/80 text-white'=>$message->sender_id=== auth()->id()
+                         'rounded-br-none bg-green-500/80 text-white'=>$message->sender_id=== auth()->id()
                ])>
 
 

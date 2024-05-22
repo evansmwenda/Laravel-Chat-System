@@ -32,14 +32,6 @@
                  <h5 class="font-extrabold text-2xl">Chats</h5>
             </div>
 
-             <button>
-
-                <svg class="w-7 h-7"  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
-                  </svg>
-
-             </button>
-
         </div>
 
 
@@ -138,7 +130,7 @@
                     <div class="col-span-1 flex flex-col text-center my-auto">
 
                         <x-dropdown align="right" width="48">
-                            <x-slot name="trigger">
+                            <!-- <x-slot name="trigger">
                                 <button>
 
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical w-7 h-7 text-gray-700" viewBox="0 0 16 16">
@@ -147,9 +139,9 @@
                                
 
                                 </button>
-                            </x-slot>
+                            </x-slot> -->
         
-                            <x-slot name="content">
+                            <!-- <x-slot name="content">
 
                                 <div class="w-full p-1">
 
@@ -184,7 +176,7 @@
 
                                 </div>
                      
-                            </x-slot>
+                            </x-slot> -->
                         </x-dropdown>
 
 

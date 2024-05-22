@@ -16,7 +16,7 @@
                 <span class="text-sm text-gray-500">{{$user->email}} </span>
 
                 <div class="flex mt-4 space-x-3 md:mt-6 py-5">
-                    <x-primary-button wire:click="message({{$user->id}})" >
+                    <x-primary-button wire:click="message({{$user->id}})" class="text-white hover:bg-green-700 transition duration-300 ease-in-out">
                         Message
                     </x-primary-button>
                 </div>
