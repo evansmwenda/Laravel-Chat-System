@@ -40,8 +40,6 @@ class ChatBox extends Component
 
     public function broadcastedNotifications($event)
     {
-
-        dd($event);
         if ($event['type'] == MessageSent::class) {
             if ($event['conversation_id'] == $this->selectedConversation->id) {
                 $this->dispatch('scroll-bottom');
@@ -55,9 +53,7 @@ class ChatBox extends Component
                 $newMessage->read_at = now();
                 $newMessage->save();
 
-                //broadcast 
-                // $this->selectedConversation->getReceiver()
-                //     ->notify(new MessageRead($this->selectedConversation->id));
+                
             }
         }
     }
