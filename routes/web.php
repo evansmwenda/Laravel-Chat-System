@@ -35,7 +35,7 @@ require __DIR__.'/auth.php';
 
 
 Route::middleware('auth')->group(function (){
-    Route::get('/chat',Index::class)->name('chat.index');
+    Route::get('/chats',Index::class)->name('chats');
     Route::get('/chat/{query}',Chat::class)->name('chat');
     Route::get('/users',Users::class)->name('users');
 });
