@@ -14,9 +14,9 @@ class Chat extends Component
     public function mount()
     {
         $this->selectedConversation= Conversation::findOrFail($this->query);
-
+        
        //set unread messages in conversation thread of current user as read
-       Message::where('conversation_id',$this->selectedConversation->query)
+       Message::where('conversation_id',$this->selectedConversation->id)
             ->where('receiver_id',auth()->id())
             ->whereNull('read_at')
             ->update(['read_at'=>now()]);
