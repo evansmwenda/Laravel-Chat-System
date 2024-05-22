@@ -17,7 +17,7 @@
         if(notification['type']== 'App\\Notifications\\MessageRead'||notification['type']== 'App\\Notifications\\MessageSent')
         {
 
-            window.Livewire.emit('refresh');
+            window.Livewire.dispatch('refresh');
         }
     });
    
