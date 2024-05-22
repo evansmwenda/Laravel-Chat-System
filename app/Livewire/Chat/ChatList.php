@@ -7,6 +7,7 @@ use Livewire\Component;
 class ChatList extends Component
 {
     public $selectedConversation;
+    protected $listeners=['refresh'=>'$refresh'];
 
     public function render()
     {
