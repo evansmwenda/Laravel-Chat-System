@@ -29,7 +29,40 @@ class ChatBox extends Component
         return view('livewire.chat.chat-box');
     }
 
-    public function loadMore(): void
+    public function getListeners()
+    {
+        $auth_id = auth()->user()->id;
+        return [
+            'loadMore',
+            "echo-private:users.{$auth_id},.Illuminate\\Notifications\\Events\\BroadcastNotificationCreated" => 'broadcastedNotifications'
+        ];
+    }
+
+    public function broadcastedNotifications($event)
+    {
+
+        dd($event);
+        if ($event['type'] == MessageSent::class) {
+            if ($event['conversation_id'] == $this->selectedConversation->id) {
+                $this->dispatch('scroll-bottom');
+
+                $newMessage = Message::find($event['message_id']);
+
+                //push message
+                $this->loadedMessages->push($newMessage);
+
+                //mark as read
+                $newMessage->read_at = now();
+                $newMessage->save();
+
+                //broadcast 
+                // $this->selectedConversation->getReceiver()
+                //     ->notify(new MessageRead($this->selectedConversation->id));
+            }
+        }
+    }
+
+    public function loadMore()
     {
         //increment 
         // $this->paginate_var += 10;

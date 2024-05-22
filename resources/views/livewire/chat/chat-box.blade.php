@@ -70,7 +70,7 @@ class="w-full overflow-hidden">
 
       if(scropTop <= 0){
 
-        window.livewire.emit('loadMore');
+        window.livewire.dispatch('loadMore');
 
       }
      
