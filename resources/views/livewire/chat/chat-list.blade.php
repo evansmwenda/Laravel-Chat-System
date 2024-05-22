@@ -115,13 +115,16 @@
                                {{$conversation->messages?->last()?->message??' '}}
                             </p>
 
-                             <!-- unread count -->
-                             @if ($conversation->unreadMessagesCount()>0)
-                             <span class="font-bold p-px px-2 text-xs shrink-0 rounded-full bg-blue-500 text-white">
-                                {{$conversation->unreadMessagesCount()}}
-                             </span>
-                                 
+                             <!-- unread count ONLY if we are the receiver-->
+                             @if ($conversation->messages?->last()?->sender_id != auth()->id())
+                                @if ($conversation->unreadMessagesCount()>0)
+                                <span class="font-bold p-px px-2 text-xs shrink-0 rounded-full bg-blue-500 text-white">
+                                    {{$conversation->unreadMessagesCount()}}
+                                </span>
+                                    
+                                @endif
                              @endif
+                             
 
 
                         </div>

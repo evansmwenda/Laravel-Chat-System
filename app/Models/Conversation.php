@@ -19,7 +19,7 @@ class Conversation extends Model
         return $this->hasMany(Message::class);
     }
 
-    //get receiver in the conversation
+    //get receiver user object in the conversation
     public function getReceiver()
     {
         if($this->sender_id === auth()->id()){
@@ -29,6 +29,7 @@ class Conversation extends Model
         }
     }
 
+    //get count of unready messages in conversation
     public  function unreadMessagesCount()
     {
         return $unreadMessages= Message::where('conversation_id','=',$this->id)
@@ -36,6 +37,7 @@ class Conversation extends Model
         ->whereNull('read_at')->count();
     }
 
+    //check if latest message is read
     public  function isLastMessageReadByUser()
     {
         $user=Auth()->User();
