@@ -36,4 +36,4 @@ Steps to run project
 
 4. Start the queue worker to process jobs `php artisan queue:work`
 
-5. Navigate to `http://localhost:8000` and register an account
+5. Navigate to `http://localhost:8000` and register an account and navigate to `/users` to send a message

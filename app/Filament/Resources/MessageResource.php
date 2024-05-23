@@ -45,9 +45,17 @@ class MessageResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('sender_id')
+                ->sortable()
+                ->formatStateUsing(function ($state, $record) {
+                    return $record->getSenderEmail();
+                }),
+                TextColumn::make('receiver_id')
+                ->sortable()
+                ->formatStateUsing(function ($state, $record) {
+                    return $record->getReceiverEmail();
+                }),
                 TextColumn::make('message')->wrap(),
-                TextColumn::make('sender_id')->sortable(),
-                TextColumn::make('receiver_id')->sortable(),
                 TextColumn::make('created_at')->sortable(),
             ])
             ->filters([

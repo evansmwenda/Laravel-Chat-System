@@ -28,4 +28,16 @@ class Message extends Model
     {
         return $this->read_at != null;
     }
+
+    //return sender name
+    public function getSenderEmail()
+    {
+        return User::firstWhere('id',$this->sender_id)->email;
+    }
+
+    //return receiver name
+    public function getReceiverEmail()
+    {
+        return User::firstWhere('id',$this->receiver_id)->email;
+    }
 }
