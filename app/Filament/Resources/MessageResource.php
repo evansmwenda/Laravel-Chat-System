@@ -10,6 +10,7 @@ use Filament\Forms;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -29,15 +30,27 @@ class MessageResource extends Resource
     {
         return $form
             ->schema([
-                // Section::make('Message Details')
-                // ->schema([
-                //     Select::make('conversation_id')
-                //     ->relationship(name:'conversation',titleAttribute: 'id')
-                //     ->searchable()
-                //     ->preload()
-                //     ->required(),
-                //     DateTimePicker::make('read_at'),
-                // ])->columns(2)
+                Section::make('Message Details')
+                ->schema([
+                    TextInput::make('sender')
+                    ->afterStateHydrated(function ($state, $component, $record) {
+                        if ($record) {
+                            $component->state($record->getSenderEmail());
+                        }
+                    })
+                    ->disabled(),
+                    TextInput::make('receiver')
+                    ->afterStateHydrated(function ($state, $component, $record) {
+                        if ($record) {
+                            $component->state($record->getReceiverEmail());
+                        }
+                    })
+                    ->disabled(),
+                    Textarea::make('message')
+                        ->required()
+                        ->columnSpan('full')
+                        ->readOnly(),
+                ])->columns(2)
             ]);
     }
 
@@ -62,7 +75,7 @@ class MessageResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -82,7 +95,6 @@ class MessageResource extends Resource
     {
         return [
             'index' => Pages\ListMessages::route('/'),
-            'create' => Pages\CreateMessage::route('/create'),
             'edit' => Pages\EditMessage::route('/{record}/edit'),
         ];
     }
