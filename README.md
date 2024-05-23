@@ -4,7 +4,7 @@ This chat system has been developed using Laravel Livewire for the user-facing u
 
 Steps to run project
 
-##Backend
+## Backend
 
 1. Git clone `git clone <project-url>`
 
@@ -19,14 +19,14 @@ Steps to run project
 6. Run migrations and seeder `php artisan migrate --seed`
 
 
-##Frontend
+## Frontend
 
 1. Set up project's front end dependencies `npm install`
 
 2. Run `npm run dev` to compile assets
 
 
-##RealTime Updates
+## RealTime Updates
 
 1. Run this command to start the local web sockets server  `php artisan websockets:serve`
 
