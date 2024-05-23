@@ -24,8 +24,6 @@ class ChatBox extends Component
     public function mount()
     {
         $this->loadMessages();
-        $this->markMessagesAsRead();
-
     }
 
     public function render()
@@ -100,14 +98,6 @@ class ChatBox extends Component
 
 
         return $this->loadedMessages;
-    }
-
-    public function markMessagesAsRead()
-    {
-        // Mark all messages in the selected conversation as read
-        Message::where('conversation_id', $this->selectedConversation->id)
-            ->where('receiver_id', Auth::id())
-            ->update(['read_at' => now()]);
     }
 
     public function sendMessage()
