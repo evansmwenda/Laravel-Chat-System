@@ -5,6 +5,7 @@ namespace App\Livewire\Chat;
 use App\Models\Message;
 use App\Notifications\MessageRead;
 use App\Notifications\MessageSent;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class ChatBox extends Component
@@ -23,6 +24,8 @@ class ChatBox extends Component
     public function mount()
     {
         $this->loadMessages();
+        $this->markMessagesAsRead();
+
     }
 
     public function render()
@@ -78,24 +81,18 @@ class ChatBox extends Component
 
         $userId = auth()->id();
         #get count
-        $count = Message::where('conversation_id', $this->selectedConversation->id)
-            ->where(function ($query) use ($userId) {
-
-                $query->where('sender_id', $userId);
-            })->orWhere(function ($query) use ($userId) {
-
-                $query->where('receiver_id', $userId);
+        $count = Message::where('conversation_id', $this->selectedConversation->id)    
+            ->where(function ($query) use($userId) {
+                $query->where('sender_id', $userId)
+                    ->orWhere('receiver_id', $userId);
             })
             ->count();
 
         #skip and query
         $this->loadedMessages = Message::where('conversation_id', $this->selectedConversation->id)
-            ->where(function ($query) use ($userId) {
-
-                $query->where('sender_id', $userId);
-            })->orWhere(function ($query) use ($userId) {
-
-                $query->where('receiver_id', $userId);
+            ->where(function ($query) use($userId) {
+                $query->where('sender_id', $userId)
+                    ->orWhere('receiver_id', $userId);
             })
             // ->skip($count - $this->paginate_var)
             // ->take($this->paginate_var)
@@ -103,6 +100,14 @@ class ChatBox extends Component
 
 
         return $this->loadedMessages;
+    }
+
+    public function markMessagesAsRead()
+    {
+        // Mark all messages in the selected conversation as read
+        Message::where('conversation_id', $this->selectedConversation->id)
+            ->where('receiver_id', Auth::id())
+            ->update(['read_at' => now()]);
     }
 
     public function sendMessage()
