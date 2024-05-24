@@ -18,6 +18,8 @@ Steps to run project
 
 6. Run migrations and seeder `php artisan migrate --seed`
 
+7. Run `php artisan serve` and navigate to `http://localhost:8000` to confirm the page is being served
+
 
 ## Frontend
 
@@ -41,5 +43,6 @@ Steps to run project
 ## Admin Dashboard
 
 1. Navigate to `http://localhost:8000/admin` to access the admin panel using the credentials below
-    email: `admin`
-    password: `password`
+
+email: `admin@gmail.com`
+password: `password`
